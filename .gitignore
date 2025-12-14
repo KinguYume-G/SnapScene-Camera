@@ -1,0 +1,147 @@
+# ================================================
+# Android + Kotlin + Gradle 项目 .gitignore
+# 生成时间: 2024-12-14
+# ================================================
+
+# =================== Android Studio / IDE ===================
+*.iml
+.idea/
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/runConfigurations.xml
+*.hprof
+
+# VS Code
+.vscode/
+
+# =================== Gradle ===================
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# =================== Kotlin ===================
+.kotlin/
+
+# =================== Local Configuration ===================
+local.properties
+/local.properties
+*.local
+
+# =================== 密钥与签名 (Keys & Signing) ===================
+*.jks
+*.keystore
+*.p12
+*.pem
+*.pk8
+*.key
+signing/
+keystore/
+release/
+
+# Google Services (Firebase/FCM)
+google-services.json
+GoogleService-Info.plist
+
+# =================== 敏感配置文件 ===================
+secrets.properties
+api-keys.properties
+credentials.json
+service-account*.json
+
+# =================== 构建产物 (Build Outputs) ===================
+*.apk
+*.aab
+*.ap_
+*.dex
+/captures
+.externalNativeBuild
+.cxx
+*.so
+
+# =================== 日志与临时文件 ===================
+*.log
+*.tmp
+*.temp
+*.bak
+*~
+
+# 项目特定 - 构建日志
+build_log*.txt
+build_error*.txt
+build_fix*.txt
+build_adjust*.txt
+build_result*.txt
+compile_*.txt
+clean_build*.txt
+final_build*.txt
+fresh_build*.txt
+rebuild*.txt
+gesture_temp.txt
+setupUI_CORRECT.txt
+
+# =================== 操作系统生成文件 ===================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# =================== 测试与覆盖率 ===================
+/coverage/
+*.exec
+jacoco.exec
+
+# =================== 其他 ===================
+# Proguard
+proguard/
+mapping.txt
+
+# NDK
+obj/
+
+# IntelliJ
+out/
+
+# Annotation processors
+.apt_generated/
+.apt_generated_tests/
+
+# Android Profiling
+*.trace
+
+# Fabric / Crashlytics
+fabric.properties
+crashlytics.properties
+crashlytics-build.properties
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Bundle
+*.aab
+
+# 开发辅助脚本 (可选 - 如果不想提交可取消注释)
+# *.py
+# JAVA_FIX_GUIDE.md

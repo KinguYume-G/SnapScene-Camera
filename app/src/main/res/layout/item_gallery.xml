@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_margin="2dp">
+
+    <!-- 照片缩略图 -->
+    <ImageView
+        android:id="@+id/ivThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="#333333"
+        android:contentDescription="照片缩略图" />
+
+    <!-- 选中状态遮罩 -->
+    <View
+        android:id="@+id/vMask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone" />
+
+    <!-- 勾选图标 -->
+    <ImageView
+        android:id="@+id/ivCheck"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="8dp"
+        android:src="@android:drawable/checkbox_on_background"
+        android:tint="#4A90E2"
+        android:visibility="gone"
+        android:contentDescription="选中" />
+
+</FrameLayout>

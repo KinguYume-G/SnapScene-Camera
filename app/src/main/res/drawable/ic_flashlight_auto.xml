@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 手电筒主体（绿色） -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M9,2 L15,2 L15,7 L17,7 L12,13 L7,7 L9,7 Z M7,14 L17,14 L17,22 L7,22 Z" />
+    <!-- 字母A标记 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10.5,16 L12,18.5 L13.5,16 L12.8,16 L12.8,17.8 L11.2,17.8 L11.2,16 Z M11.5,17 L12.5,17 L12.5,17.3 L11.5,17.3 Z" />
+</vector>

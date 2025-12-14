@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景渐变 -->
+    <item>
+        <shape>
+            <gradient
+                android:angle="135"
+                android:startColor="#FF6B9EF7"
+                android:centerColor="#FF9C7EF7"
+                android:endColor="#FFC76AF7"
+                android:type="linear" />
+        </shape>
+    </item>
+    
+    <!-- 半透明暗层 -->
+    <item>
+        <shape>
+            <solid android:color="#60000000" />
+        </shape>
+    </item>
+</layer-list>
