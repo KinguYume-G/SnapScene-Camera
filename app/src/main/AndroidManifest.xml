@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    
+    <!-- 数字人SDK网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 
     <application
@@ -19,18 +23,34 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.SnapSceneCamera">
         
+        <!-- Splash Screen - 启动页 -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.SnapSceneCamera">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- New Main Activity - Digital Human Homepage -->
+        <activity
+            android:name=".NewMainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.SnapSceneCamera" />
+        
+        <!-- Old Main Activity - Keep for reference -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.SnapSceneCamera" />
 
         <activity
             android:name=".CameraActivity"
@@ -46,6 +66,17 @@
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
+        
+        <!-- New Activities -->
+        <activity
+            android:name=".SchoolMapActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SnapSceneCamera" />
+        
+        <activity
+            android:name=".BookingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SnapSceneCamera" />
             
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

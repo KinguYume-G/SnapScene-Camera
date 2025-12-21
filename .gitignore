@@ -1,6 +1,7 @@
 # ================================================
 # Android + Kotlin + Gradle 项目 .gitignore
 # 生成时间: 2024-12-14
+# 更新时间: 2025-12-21 (安全审查)
 # ================================================
 
 # =================== Android Studio / IDE ===================
@@ -88,6 +89,27 @@ fresh_build*.txt
 rebuild*.txt
 gesture_temp.txt
 setupUI_CORRECT.txt
+kotlin_error.txt
+
+# =================== 文档与工作流程文件 (NOT FOR UPLOAD) ===================
+# AI生成的工作流程文档 - 包含项目细节，不应上传
+*.md
+!README.md
+!LICENSE.md
+!CONTRIBUTING.md
+!CHANGELOG.md
+
+# AI助手artifacts目录 - 包含所有计划和walkthrough
+.gemini/
+brain/
+
+# 开发辅助脚本 - 可能包含项目特定逻辑
+*.py
+!setup.py
+!manage.py
+
+# 项目指南文档
+JAVA_FIX_GUIDE.md
 
 # =================== 操作系统生成文件 ===================
 # macOS
@@ -142,6 +164,16 @@ fastlane/test_output
 # Bundle
 *.aab
 
-# 开发辅助脚本 (可选 - 如果不想提交可取消注释)
-# *.py
-# JAVA_FIX_GUIDE.md
+# =================== 视频录制与截图 (可选) ===================
+# 如果有敏感UI截图，请取消注释
+# screenshots/
+# recordings/
+# *.mp4
+# *.webm
+
+# =================== 数据库与测试数据 ===================
+# 如果有本地测试数据库
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3

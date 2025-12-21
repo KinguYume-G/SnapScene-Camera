@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnapScene Camera</string>
+    
+    <!-- New Main Activity -->
+    <string name="school_name">Universiti Teknologi Asia Pasifik</string>
+    <string name="btn_ai_camera">Fotografi AI</string>
+    <string name="btn_navigation">Peta Sekolah</string>
+    <string name="btn_booking">Tempah Lawatan</string>
+    <string name="weather">Cuaca</string>
+    
+    <!-- School Map -->
+    <string name="school_map">Peta Sekolah</string>
+    <string name="map_placeholder_text">Peta Kampus APU\n(Placeholder - Pinch to Zoom)</string>
+    <string name="map_placeholder_hint">Cubit untuk zum dan seret untuk navigasi</string>
+    
+    <!-- Booking -->
+    <string name="booking_title">Tempah Lawatan</string>
+    <string name="booking_subtitle">Isi maklumat anda dan kami akan menghubungi anda tidak lama lagi</string>
+    <string name="name_hint">Nama</string>
+    <string name="email_hint">Emel</string>
+    <string name="phone_hint">Nombor Telefon</string>
+    <string name="submit">Hantar</string>
+    <string name="error_name_required">Sila masukkan nama anda</string>
+    <string name="error_email_invalid">Sila masukkan alamat emel yang sah</string>
+    <string name="error_phone_invalid">Sila masukkan nombor telefon yang sah (sekurang-kurangnya 10 digit)</string>
+    <string name="booking_success">Tempahan berjaya! Kami akan menghubungi anda tidak lama lagi.</string>
+    
+    <!-- Common -->
+    <string name="btn_back">Kembali</string>
+    <string name="btn_save">Simpan</string>
+    <string name="btn_cancel">Batal</string>
+</resources>

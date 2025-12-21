@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0a1929"
+    tools:context=".NewMainActivity">
+
+    <!-- 背景渐变 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main_gradient" />
+
+    <!-- 数字人容器 -->
+    <FrameLayout
+        android:id="@+id/digital_human_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+        <!-- DigitalHumanAnimationView will be added programmatically -->
+    </FrameLayout>
+
+    <!-- 主要内容 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 顶部信息栏 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#CC0a1929"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- 左侧：Logo -->
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/apu_logo"
+                android:contentDescription="@string/school_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 学校名称 -->
+            <LinearLayout
+                android:id="@+id/schoolNameLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@id/ivLogo"
+                app:layout_constraintEnd_toStartOf="@id/weatherLayout"
+                app:layout_constraintStart_toEndOf="@id/ivLogo"
+                app:layout_constraintTop_toTopOf="@id/ivLogo"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintWidth_max="120dp"
+                app:layout_constraintHorizontal_bias="0">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="亚太科技大学"
+                    android:textColor="#FFFFFF"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Asia Pacific University"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="7sp" />
+            </LinearLayout>
+
+            <!-- 天气信息 -->
+            <LinearLayout
+                android:id="@+id/weatherLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_weather_badge"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/timeLayout"
+                app:layout_constraintStart_toEndOf="@id/schoolNameLayout"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:text="☀"
+                    android:textSize="11sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvWeather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="28°C|65%"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- 时间和日期 -->
+            <LinearLayout
+                android:id="@+id/timeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/languageContainer"
+                app:layout_constraintStart_toEndOf="@id/weatherLayout"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22:40:54"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.02" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12月20日 星期五"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <!-- 右侧：语言切换 -->
+            <LinearLayout
+                android:id="@+id/languageContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="6dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:paddingHorizontal="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/timeLayout"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:text="🌐"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/tvLanguageCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="ZH"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 语言下拉菜单（美化版） -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/languageDropdown"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="12dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="#EE5577FF"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/btnLangEnglish"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_language_item"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="🇬🇧 English"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:layout_marginVertical="2dp" />
+
+                <TextView
+                    android:id="@+id/btnLangChinese"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_language_item"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="🇨🇳 中文"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:layout_marginVertical="2dp" />
+
+                <TextView
+                    android:id="@+id/btnLangMalay"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bg_language_item"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="🇲🇾 Malay"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:layout_marginVertical="2dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 右侧功能按钮区域 -->
+        <LinearLayout
+            android:id="@+id/buttonContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/footerText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topBar"
+            app:layout_constraintVertical_bias="0.55">
+
+            <!-- AI拍照按钮 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#5577FF"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:id="@+id/btnAiCamera"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@android:drawable/ic_menu_camera"
+                        android:tint="#FFFFFF"
+                        android:contentDescription="AI Photo" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:text="@string/btn_ai_camera"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/ic_menu_send"
+                        android:tint="#FFFFFF"
+                        android:contentDescription="Go" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 导航学校按钮 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#55CC77"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:id="@+id/btnNavigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@android:drawable/ic_dialog_map"
+                        android:tint="#FFFFFF"
+                        android:contentDescription="Navigation" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:text="@string/btn_navigation"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/ic_menu_send"
+                        android:tint="#FFFFFF"
+                        android:contentDescription="Go" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 预约参观按钮 -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#FF8844"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:id="@+id/btnBooking"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@android:drawable/ic_menu_my_calendar"
+                        android:tint="#FFFFFF"
+                        android:contentDescription="Booking" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:text="@string/btn_booking"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@android:drawable/ic_menu_send"
+                        android:tint="#FFFFFF"
+                        android:contentDescription="Go" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <!-- 底部版权信息 -->
+        <TextView
+            android:id="@+id/footerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="© 2025 APU 亚太科技大学 - 智能校园服务系统"
+            android:textColor="#99FFFFFF"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

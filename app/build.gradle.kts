@@ -81,6 +81,9 @@ dependencies {
     
     // ExifInterface - 图像方向处理
     implementation("androidx.exifinterface:exifinterface:1.3.7")
+    
+    // PhotoView - 图片缩放和拖动
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
 
 
     testImplementation(libs.junit)

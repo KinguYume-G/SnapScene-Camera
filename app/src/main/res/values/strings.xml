@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SnapScene Camera</string>
+    <string name="app_name">APU Virtual Guide</string>
     
     <!-- Main Screen -->
     <string name="btn_camera">Snap \u0026 Change Scene</string>
@@ -70,4 +70,28 @@
     <string name="delete_confirm">Delete this image?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    
+    <!-- New Main Activity -->
+    <string name="school_name">亚太科技大学</string>
+    <string name="btn_ai_camera">AI拍照</string>
+    <string name="btn_navigation">导航学校</string>
+    <string name="btn_booking">预约参观</string>
+    <string name="weather">天气</string>
+    
+    <!-- School Map -->
+    <string name="school_map">学校地图</string>
+    <string name="map_placeholder_text">APU Campus Map\n(占位图 - 可缩放拖动)</string>
+    <string name="map_placeholder_hint">使用双指缩放查看地图</string>
+    
+    <!-- Booking -->
+    <string name="booking_title">预约参观</string>
+    <string name="booking_subtitle">请填写您的信息，我们将尽快与您联系</string>
+    <string name="name_hint">姓名</string>
+    <string name="email_hint">邮箱</string>
+    <string name="phone_hint">手机号码</string>
+    <string name="submit">提交</string>
+    <string name="error_name_required">请输入姓名</string>
+    <string name="error_email_invalid">请输入有效的邮箱地址</string>
+    <string name="error_phone_invalid">请输入有效的手机号码（至少10位）</string>
+    <string name="booking_success">预约成功！我们会尽快与您联系。</string>
 </resources>

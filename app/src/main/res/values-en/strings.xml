@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnapScene Camera</string>
+    
+    <!-- New Main Activity -->
+    <string name="school_name">Asia Pacific University</string>
+    <string name="btn_ai_camera">AI Photo</string>
+    <string name="btn_navigation">School Map</string>
+    <string name="btn_booking">Book Visit</string>
+    <string name="weather">Weather</string>
+    
+    <!-- School Map -->
+    <string name="school_map">School Map</string>
+    <string name="map_placeholder_text">APU Campus Map\n(Placeholder - Pinch to Zoom)</string>
+    <string name="map_placeholder_hint">Pinch to zoom and drag to navigate</string>
+    
+    <!-- Booking -->
+    <string name="booking_title">Book a Visit</string>
+    <string name="booking_subtitle">Fill in your information and we will contact you soon</string>
+    <string name="name_hint">Name</string>
+    <string name="email_hint">Email</string>
+    <string name="phone_hint">Phone Number</string>
+    <string name="submit">Submit</string>
+    <string name="error_name_required">Please enter your name</string>
+    <string name="error_email_invalid">Please enter a valid email address</string>
+    <string name="error_phone_invalid">Please enter a valid phone number (at least 10 digits)</string>
+    <string name="booking_success">Booking successful! We will contact you soon.</string>
+    
+    <!-- Common -->
+    <string name="btn_back">Back</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+</resources>
