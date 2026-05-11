@@ -12,10 +12,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.view.MotionEvent
-import android.view.ScaleGestureDetector
 import android.view.View
-import kotlin.math.atan2
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -53,8 +50,6 @@ class EditActivity : AppCompatActivity() {
     private var currentBackgroundDrawableId: Int? = null
     private var currentBackgroundItem: BackgroundItem = BackgroundItem.Original
     private var isEnhanced = false
-    private var lastTouchY = 0f
-    private var activePointerId = -1
     
     // Engine
     private lateinit var exportEngine: ExportEngine
@@ -62,10 +57,8 @@ class EditActivity : AppCompatActivity() {
     // Foreground state
     private var isAdjustMode = false
     private var foregroundScale = 1.0f
-    private var foregroundRotation = 0f
     private var foregroundTranslateX = 0f
     private var foregroundTranslateY = 0f
-    private var lastTouchX = 0f
     
     // Background items - 世界旅游景点背景
     private val backgroundItems by lazy {
@@ -872,33 +865,6 @@ class EditActivity : AppCompatActivity() {
         }
     }
 
-
-    
-    private fun setupScaleGesture() {
-        val scaleDetector = ScaleGestureDetector(this, object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
-            override fun onScale(detector: ScaleGestureDetector): Boolean {
-                if (!isAdjustMode) return false
-                
-                foregroundScale *= detector.scaleFactor
-                foregroundScale = foregroundScale.coerceIn(0.5f, 3.0f)
-                
-                binding.ivForeground.scaleX = foregroundScale
-                binding.ivForeground.scaleY = foregroundScale
-                
-                Log.d(TAG, "Scale adjusted: $foregroundScale")
-                return true
-            }
-        })
-        
-        binding.ivForeground.setOnTouchListener { _, event ->
-            if (isAdjustMode) {
-                scaleDetector.onTouchEvent(event)
-            }
-            true
-        }
-    }
-
-    
     private fun setupSlowAdjustGesture() {
         // 慢速系数：值越小移动越慢
         val moveSpeedFactor = 0.3f  // 移动速度30%
@@ -1058,70 +1024,6 @@ class EditActivity : AppCompatActivity() {
         binding.ivForeground.translationX = foregroundTranslateX
         binding.ivForeground.translationY = foregroundTranslateY
     }
-    
-    private fun applyAdjustAndSave() {
-        // 应用调整并保存到相册
-        lifecycleScope.launch {
-            try {
-                Toast.makeText(this@EditActivity, "正在保存...", Toast.LENGTH_SHORT).show()
-                
-                val result = withContext(Dispatchers.IO) {
-                    compositeFinalImage()
-                }
-                
-                // 保存到MediaStore
-                val uri = withContext(Dispatchers.IO) {
-                    saveToGallery(result)
-                }
-                
-                Toast.makeText(this@EditActivity, "已保存到相册", Toast.LENGTH_SHORT).show()
-                Log.d(TAG, "Adjust saved: $uri")
-                
-            } catch (e: Exception) {
-                Log.e(TAG, "Save failed", e)
-                Toast.makeText(this@EditActivity, "保存失败", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-    
-    private suspend fun saveToGallery(bitmap: Bitmap): Uri? {
-        return withContext(Dispatchers.IO) {
-            try {
-                val filename = "SnapScene_${System.currentTimeMillis()}.jpg"
-                val contentValues = android.content.ContentValues().apply {
-                    put(android.provider.MediaStore.Images.Media.DISPLAY_NAME, filename)
-                    put(android.provider.MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-                    put(android.provider.MediaStore.Images.Media.RELATIVE_PATH,
-                        "${android.os.Environment.DIRECTORY_PICTURES}/SnapScene Camera")
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-                        put(android.provider.MediaStore.Images.Media.IS_PENDING, 1)
-                    }
-                }
-                
-                val uri = contentResolver.insert(
-                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    contentValues
-                )
-                
-                uri?.let {
-                    contentResolver.openOutputStream(it)?.use { out ->
-                        bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 95, out)
-                    }
-                    
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-                        contentValues.clear()
-                        contentValues.put(android.provider.MediaStore.Images.Media.IS_PENDING, 0)
-                        contentResolver.update(uri, contentValues, null, null)
-                    }
-                }
-                
-                uri
-            } catch (e: Exception) {
-                Log.e(TAG, "saveToGallery failed", e)
-                null
-            }
-        }
-    }
     override fun onDestroy() {
         super.onDestroy()
         Log.d(TAG, "onDestroy: Cleaning up")
@@ -1146,16 +1048,6 @@ class EditActivity : AppCompatActivity() {
         // Default: No gestures. Adjust mode enables them.
         binding.ivForeground.setOnTouchListener(null)
     }
-    
-    private fun applyForegroundTransformation() {
-        binding.ivForeground.scaleX = foregroundScale
-        binding.ivForeground.scaleY = foregroundScale
-        binding.ivForeground.rotation = foregroundRotation
-        binding.ivForeground.translationX = foregroundTranslateX
-        binding.ivForeground.translationY = foregroundTranslateY
-    }
-    
-    
     private fun updateAdjustModeUI() {
         if (isAdjustMode) {
             // Enter Adjust Mode - 使用稳定的绿色背景 drawable（避免闪烁）
@@ -1178,13 +1070,6 @@ class EditActivity : AppCompatActivity() {
             
             Toast.makeText(this, "调整完成", Toast.LENGTH_SHORT).show()
         }
-    }
-
-private fun calculateRotation(event: MotionEvent): Float {
-        val deltaX = (event.getX(0) - event.getX(1)).toDouble()
-        val deltaY = (event.getY(0) - event.getY(1)).toDouble()
-        val radians = atan2(deltaY, deltaX)
-        return Math.toDegrees(radians).toFloat()
     }
 }
 

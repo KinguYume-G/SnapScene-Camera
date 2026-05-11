@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 sealed class BackgroundItem {
     data class ColorItem(val color: Int) : BackgroundItem()
@@ -45,11 +44,6 @@ class BackgroundAdapter(
                 holder.colorCircle.background = drawable
             }
             is BackgroundItem.ImageItem -> {
-                // Use Glide to load image into the circle (assuming it's a View, we might need an ImageView)
-                // Since colorCircle is a View, we can set background.
-                // But for images, it's better to use an ImageView.
-                // However, item_background.xml probably has a View or ImageView.
-                // Let's assume it's a View for now and set background resource.
                 holder.colorCircle.setBackgroundResource(item.drawableId)
             }
         }

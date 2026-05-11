@@ -5,7 +5,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.snapscenecamera.databinding.ActivitySchoolMapBinding
-import com.github.chrisbanes.photoview.PhotoView
 
 class SchoolMapActivity : AppCompatActivity() {
 
