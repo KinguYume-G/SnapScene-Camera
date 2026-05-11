@@ -10,7 +10,6 @@
 [![Kotlin](https://img.shields.io/badge/Language-Kotlin-7F52FF?style=flat-square&logo=kotlin)](https://kotlinlang.org/)
 [![Min SDK](https://img.shields.io/badge/Min%20SDK-24%20(Android%207.0)-blue?style=flat-square)](https://developer.android.com/)
 [![Target SDK](https://img.shields.io/badge/Target%20SDK-34%20(Android%2014)-green?style=flat-square)](https://developer.android.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
 > A dual-purpose Android application combining an **AI-powered photo background replacement studio** with an **APU smart campus virtual guide**, featuring real-time face detection, ML Kit selfie segmentation, and a 3-language digital human assistant.
 
@@ -207,7 +206,7 @@ SnapScene-Camera/
 | Permission | Purpose |
 |-----------|---------|
 | `CAMERA` | Take photos and run real-time face detection |
-| `RECORD_AUDIO` | Digital Human TTS audio |
+| `RECORD_AUDIO` | Reserved for digital human SDK audio capability |
 | `READ_EXTERNAL_STORAGE` | Gallery access on Android ≤ 12 |
 | `READ_MEDIA_IMAGES` | Gallery access on Android 13+ |
 | `WRITE_EXTERNAL_STORAGE` | Save photos on Android ≤ 8 |
@@ -277,6 +276,24 @@ MainActivity
 
 ---
 
+## 🧹 Repository Cleanup
+
+The repository has been cleaned to keep only source code, resources, Gradle configuration, and project documentation required for the app:
+
+- Removed one-time Python repair scripts.
+- Removed temporary background-dimension check scripts.
+- Removed outdated Java/Gradle troubleshooting notes.
+- Removed Android Studio template example tests.
+- Removed local Gradle cache output.
+
+The following files are intentionally retained even if not fully wired into the current UI flow, because they are part of planned or reusable app capability:
+
+- `DigitalHumanWebView.kt`
+- `FilterEngine.kt`
+- `ColorHarmonyEngine.kt`
+
+---
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -289,7 +306,7 @@ MainActivity
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+No license file is currently included. Add a `LICENSE` file before public redistribution or open-source release.
 
 ---
 
