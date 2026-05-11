@@ -48,21 +48,21 @@ SnapScene Camera serves two core functions within a single elegant app:
 | Flash Control | Off / On / Auto cycle |
 | Front/Rear Switch | One-tap camera toggle |
 | Gallery Import | Pick existing photos from device gallery |
-| Photo Resolution | Configurable via Settings (High/Medium/Low) |
+| Photo Resolution | Configurable via Settings (High / Medium / Low) |
 | Guide Lines | Optional composition grid lines |
 | Save Original | Option to auto-save raw photo before editing |
 
 ### 🎨 AI Photo Editor (`EditActivity`)
 | Feature | Description |
 |---------|-------------|
-| ML Kit Selfie Segmentation | Intelligent human cutout with mask smoothing |
+| ML Kit Selfie Segmentation | Intelligent human cutout with mask smoothing & edge feathering |
 | 30+ World Backgrounds | Landmarks from Malaysia, Japan, China, Singapore, France, Italy, USA, etc. |
 | Custom Backgrounds | Load any photo from device gallery as background |
 | Color Backgrounds | White, Black, ID Photo Blue |
-| Gesture Control | Pinch-to-zoom, drag-to-reposition the subject (Adjust Mode) |
+| Gesture Control | Pinch-to-zoom + drag-to-reposition the subject (Adjust Mode) |
 | Auto Enhance | Auto white balance + skin tone optimization |
 | Image Cropping | Free-form crop with rotation via uCrop library |
-| Multi-Format Export | JPEG (95%/85%/70%), PNG (lossless), WebP |
+| Multi-Format Export | JPEG (95% / 85% / 70%), PNG (lossless), WebP |
 | Share | Direct share to any app via Android Intent |
 | Color Harmony | Subtle warm/cool foreground-background harmonization |
 
@@ -73,9 +73,9 @@ SnapScene Camera serves two core functions within a single elegant app:
 - Form-based tour booking with full validation (name, email, phone)
 
 ### 🖼️ My Gallery (`GalleryActivity`)
-- Displays all photos saved by the app (MediaStore integration)
+- Displays all photos saved by the app via MediaStore
 - Multi-select mode: select all / deselect all
-- Batch delete with proper Android 10+ `RecoverableSecurityException` handling
+- Batch delete with Android 10+ `RecoverableSecurityException` handling
 - Batch share multiple photos
 
 ### ⚙️ Settings (`SettingsActivity`)
@@ -116,7 +116,7 @@ SnapScene-Camera/
 │           │   │
 │           │   ├── 🤖 Digital Human
 │           │   │   ├── DigitalHumanAnimationView.kt  # Animated avatar (breathing + blink)
-│           │   │   └── DigitalHumanWebView.kt        # WebView-based 3D avatar (SDK)
+│           │   │   └── DigitalHumanWebView.kt        # WebView-based 3D avatar (SDK ready)
 │           │   │
 │           │   ├── ⚙️ Engines
 │           │   │   ├── engine/ExportEngine.kt     # Multi-format image export (JPEG/PNG/WebP)
@@ -127,14 +127,9 @@ SnapScene-Camera/
 │           │   │   ├── utils/ImageSegmentationHelper.kt  # ML mask smoothing & alpha calc
 │           │   │   └── utils/ColorCorrectionHelper.kt    # Auto white balance & skin tone
 │           │   │
-│           │   ├── 🖼️ Custom Views
-│           │   │   ├── ui/FaceOverlayView.kt      # Real-time face bounding box overlay
-│           │   │   └── GuideLineView.kt           # Camera composition guide lines
-│           │   │
-│           │   └── 🎨 Compose Theme
-│           │       ├── ui/theme/Color.kt
-│           │       ├── ui/theme/Theme.kt
-│           │       └── ui/theme/Type.kt
+│           │   └── 🖼️ Custom Views
+│           │       ├── ui/FaceOverlayView.kt      # Real-time face bounding box overlay
+│           │       └── GuideLineView.kt           # Camera composition guide lines
 │           │
 │           └── res/
 │               ├── layout/                        # 11 XML layouts
@@ -143,9 +138,10 @@ SnapScene-Camera/
 │               ├── values-en/ values-ms/          # English & Malay string resources
 │               └── xml/                           # FileProvider paths, backup rules
 │
-├── build.gradle.kts                               # Root build config
-├── app/build.gradle.kts                           # App-level dependencies
-└── settings.gradle.kts                            # Project settings
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradle.properties
+└── README.md
 ```
 
 ---
@@ -160,7 +156,7 @@ SnapScene-Camera/
 | **AI / ML** | Google ML Kit — Selfie Segmentation + Face Detection |
 | **Image Loading** | Glide 4.16.0 |
 | **Image Cropping** | uCrop 2.2.8 |
-| **Map Zoom** | PhotoView 2.3.0 (Chris Banes) |
+| **Map Zoom** | PhotoView 2.3.0 |
 | **Async** | Kotlin Coroutines + LifecycleScope |
 | **Storage** | MediaStore API (Android 10+ IS_PENDING) |
 | **TTS** | Android TextToSpeech (built-in) |
@@ -176,14 +172,14 @@ SnapScene-Camera/
 ### Prerequisites
 
 - **Android Studio** Hedgehog (2023.1.1) or later
-- **JDK 17** (configure via Android Studio's embedded JDK — recommended)
+- **JDK 17** (use Android Studio's embedded JDK — recommended)
 - Android device or emulator running **Android 7.0+ (API 24+)**
 
 ### Setup
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/SnapScene-Camera.git
+   git clone https://github.com/KinguYume-G/SnapScene-Camera.git
    cd SnapScene-Camera
    ```
 
@@ -194,27 +190,26 @@ SnapScene-Camera/
    - Go to **File → Settings → Build, Execution, Deployment → Build Tools → Gradle**
    - Set **Gradle JDK** to `Embedded JDK (jbr-17)` or `Android Studio Java Home`
 
-4. **Sync Gradle**
-   - Click **Sync Now** when prompted, or run:
-     ```bash
-     ./gradlew assembleDebug
-     ```
+4. **Sync & Build**
+   ```bash
+   ./gradlew assembleDebug
+   ```
 
-5. **Run on Device/Emulator**
-   - Connect a device with USB debugging enabled, then click ▶ **Run**.
+5. **Install on device**
+   ```bash
+   ./gradlew installDebug
+   ```
 
 ---
 
 ## 📋 Permissions
 
-The app requests the following runtime permissions:
-
 | Permission | Purpose |
 |-----------|---------|
 | `CAMERA` | Take photos and run real-time face detection |
-| `RECORD_AUDIO` | Digital Human TTS (microphone not actively used) |
-| `READ_EXTERNAL_STORAGE` | Access gallery on Android ≤ 12 |
-| `READ_MEDIA_IMAGES` | Access gallery on Android 13+ |
+| `RECORD_AUDIO` | Digital Human TTS audio |
+| `READ_EXTERNAL_STORAGE` | Gallery access on Android ≤ 12 |
+| `READ_MEDIA_IMAGES` | Gallery access on Android 13+ |
 | `WRITE_EXTERNAL_STORAGE` | Save photos on Android ≤ 8 |
 | `INTERNET` | Digital Human WebView SDK (optional 3D mode) |
 | `ACCESS_NETWORK_STATE` | Network availability check |
@@ -227,29 +222,27 @@ The app requests the following runtime permissions:
 Launch
   └─► SplashActivity (2.5s)
         └─► NewMainActivity (Digital Human Guide)
-              ├─► [AI Camera] → MainActivity → CameraActivity → EditActivity → GalleryActivity
-              ├─► [Campus Map] → SchoolMapActivity
-              └─► [Book Visit] → BookingActivity
+              ├─► [AI Camera]   → MainActivity → CameraActivity → EditActivity
+              ├─► [Campus Map]  → SchoolMapActivity
+              └─► [Book Visit]  → BookingActivity
+
+MainActivity
+  ├─► CameraActivity  →  EditActivity  →  GalleryActivity
+  ├─► GalleryActivity
+  └─► SettingsActivity
 ```
 
 ---
 
-## 🌍 Supported Backgrounds (30+)
+## 🌍 Background Library (30+)
 
-### 🇲🇾 Malaysia
-Petronas Twin Towers · KL Tower · Masjid Putra · Batu Caves · Penang Hill · Beaches
-
-### 🇯🇵 Japan
-Mount Fuji · Kyoto temples · Osaka Castle · Tokyo Tower
-
-### 🇨🇳 China
-The Great Wall · Forbidden City · Shanghai Bund
-
-### 🇸🇬 Singapore
-Marina Bay Sands · Merlion · Gardens by the Bay
-
-### 🌏 World
-🇦🇺 Sydney · 🇰🇷 Gyeongbokgung · 🇬🇧 London · 🇺🇸 Statue of Liberty · 🇩🇪 Neuschwanstein · 🇪🇸 Sagrada Família · 🇫🇷 Eiffel Tower · 🇮🇹 Colosseum
+| Region | Locations |
+|--------|-----------|
+| 🇲🇾 Malaysia | Petronas Twin Towers · KL Tower · Masjid Putra · Batu Caves · Penang · Beach |
+| 🇯🇵 Japan | Mount Fuji · Kyoto · Osaka Castle · Tokyo Tower |
+| 🇨🇳 China | Great Wall · Forbidden City · Shanghai Bund |
+| 🇸🇬 Singapore | Marina Bay Sands · Merlion · Gardens by the Bay |
+| 🇦🇺 🇰🇷 🇬🇧 🇺🇸 🇩🇪 🇪🇸 🇫🇷 🇮🇹 | Sydney · Seoul · London · New York · Bavaria · Barcelona · Paris · Rome |
 
 ---
 
@@ -267,20 +260,18 @@ Marina Bay Sands · Merlion · Gardens by the Bay
 
 ## 🎛️ Filter Engine (12 Filters)
 
-`FilterEngine.kt` provides 12 professional filters:
-
 | # | Filter | Effect |
 |---|--------|--------|
 | 1 | Original | No change |
-| 2 | Black & White | Weighted grayscale (0.299R + 0.587G + 0.114B) |
-| 3 | Retro/Sepia | Classic warm brown tone |
-| 4 | Cool Tone | Blue shift (-0.15 temperature) |
-| 5 | Warm Tone | Orange/yellow shift (+0.15 temperature) |
+| 2 | Black & White | Weighted grayscale |
+| 3 | Retro / Sepia | Classic warm brown tone |
+| 4 | Cool Tone | Blue shift |
+| 5 | Warm Tone | Orange/yellow shift |
 | 6 | Vivid | Saturation ×1.3 |
 | 7 | Soft | Saturation ×0.8 |
-| 8 | High Contrast | Contrast factor ×1.5 |
-| 9 | Japanese | Overexpose +25 + slight desaturate |
-| 10 | Film | Cinematic color grade (R+10%, B+5%) |
+| 8 | High Contrast | Contrast ×1.5 |
+| 9 | Japanese | Overexpose + desaturate |
+| 10 | Film | Cinematic color grade |
 | 11 | Cyberpunk | Blue/purple shift |
 | 12 | Sunset | Warm orange/red grade |
 
@@ -304,7 +295,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ## 👨‍💻 Developer
 
-**SnapScene Camera Team**  
+**Jeffrey_Gao**  
 Asia Pacific University (APU) · Malaysia
 
 ---
